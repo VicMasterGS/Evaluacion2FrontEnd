@@ -1,45 +1,90 @@
-body{
-background-color: lightgray;
-text-align: center;
+body {
+    background-color: lightgray;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-header h1{
-color: white;
-background-color: rgb(81, 136, 255);
-padding: 20px;
-margin: 0;
+header h1 {
+    color: white;
+    background-color: rgb(81, 136, 255);
+    padding: 20px;
+    margin: 0;
 }
 
-nav ul{
-list-style:none;
-padding: 0;
-color:white;
-background-color: #515151;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: white;
+    background-color: #515151;
 }
 
-form{
-align-items: center;
-background-color: white;
-width: 300px;
-margin: 20px auto;
-padding: 20px;
-border-radius: 10px;
+nav ul li {
+    display: inline-block;
+    padding: 10px 20px;
 }
 
-input{
-width: 100%;    
-box-sizing: border-box;
+form {
+    background-color: white;
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid rgb(81, 136, 255);
+    border-radius: 10px;
 }
 
-button{
-background-color: rgb(81, 136, 255);
-color: white;
-padding: 10px 20px;
-border: none;
-cursor: pointer;
+input {
+    width: 100%;    
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: rgb(81, 136, 255);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
-background-color: rgb(60, 100, 200);
+    background-color: rgb(60, 100, 200);
 }
 
+#busqueda {
+    margin: 20px auto;
+    width: 300px;
+}
+
+#busqueda input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+#lista-colaboradores {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+table {
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: rgb(81, 136, 255);
+    color: white;
+}

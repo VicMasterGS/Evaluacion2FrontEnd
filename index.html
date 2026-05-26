@@ -27,16 +27,16 @@
     <div id="elformulario">
 
         <form id="formulario"> 
-            <label id="Nombre">Nombre: </label>
+            <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre"><br><br>
     
-            <label id="Apellido">Apellido: </label>
+            <label for="apellido">Apellido:</label>
             <input type="text" id="apellido" name="apellido"><br><br>
     
-            <label id="Cargo">Cargo: </label>
+            <label for="cargo">Cargo:</label>
             <input type="text" id="cargo" name="cargo"><br><br>
     
-            <label id="Email">Correo corporativo: </label>
+            <label for="email">Correo corporativo:</label>
             <input type="email" id="email" name="email"><br><br>
     
             <button type="submit">Registrar</button>
@@ -45,7 +45,13 @@
         <div id="errores" style="color: red;"></div>
     </div>
 
-        <!-- Tabla de colaboradores -->
+    <!-- Campo de busqueda -->
+    <div id="busqueda">
+        <label for="buscar">Buscar por nombre o cargo:</label>
+        <input type="text" id="buscar" placeholder="Escriba para buscar...">
+    </div>
+
+    <!-- Tabla de colaboradores -->
     <div id="lista-colaboradores">
         <h2>Lista de colaboradores registrados</h2>
         <table id="tabla-colaboradores">
@@ -57,8 +63,8 @@
                     <th>Correo</th>
                 </tr>
             </thead>
-            <tbody>
-                
+            <tbody id="tbody-colaboradores">
+                <!-- Aqui se agregan los colaboradores -->
             </tbody>
         </table>
     </div>
