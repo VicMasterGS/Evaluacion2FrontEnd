@@ -8,13 +8,15 @@
 </head>
 <body>
     <header>
-        <h1>Registro de colaboradores región del Bio Bio</h1>
+        <h1>Registro de colaboradores región del BioBío</h1>
     </header>
 
     <div>
         <nav>
             <ul>
-                <li>Navbar</li>
+                <li>Inicio</li>
+                <li>Registro</li>
+                <li>Contacto</li>
             </ul>
         </nav>
     </div>
@@ -40,13 +42,31 @@
             <button type="submit">Registrar</button>
     
         </form>
+        <div id="errores" style="color: red;"></div>
+    </div>
+
+        <!-- Tabla de colaboradores -->
+    <div id="lista-colaboradores">
+        <h2>Lista de colaboradores registrados</h2>
+        <table id="tabla-colaboradores">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Cargo</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
     </div>
 
 
     <footer>
-        <p>Bio Bio 2026 - Todos los derechos son reservados</p>
+        <p>BioBío 2026 - Todos los derechos son reservados</p>
     </footer>
     <script src="js/script.js"></script>
-    <div id="error"></div>
 </body>
 </html>
