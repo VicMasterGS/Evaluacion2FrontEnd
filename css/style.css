@@ -88,3 +88,17 @@ th {
     background-color: rgb(81, 136, 255);
     color: white;
 }
+
+/* Estilo para el botón de eliminar */
+button[onclick*="eliminar"] {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[onclick*="eliminar"]:hover {
+    background-color: #c0392b;
+}

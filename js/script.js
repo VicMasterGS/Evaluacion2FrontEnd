@@ -1,15 +1,12 @@
 // Arreglo para almacenar colaboradores
 let colaboradores = [];
 
+// Contador para generar IDs únicos
+let siguienteId = 1;
+
 // Función para renderizar la tabla
 function renderizarTabla(arreglo) {
     let tbody = document.getElementById("tbody-colaboradores");
-    
-    if (!tbody) {
-        console.error("No se encontró el tbody");
-        return;
-    }
-    
     tbody.innerHTML = ""; // Limpiar la tabla
 
     for (let i = 0; i < arreglo.length; i++) {
@@ -20,12 +17,44 @@ function renderizarTabla(arreglo) {
         fila += "<td>" + colab.apellido + "</td>";
         fila += "<td>" + colab.cargo + "</td>";
         fila += "<td>" + colab.email + "</td>";
+        // Añadir boton eliminar con el ID del colaborador
+        fila += "<td><button onclick='eliminarColaborador(" + colab.id + ")'>Eliminar</button></td>";
         fila += "</tr>";
 
         tbody.innerHTML += fila;
     }
 }
 
+// Función para eliminar un colaborador por su ID
+function eliminarColaborador(id) {
+    // Confirmar antes de eliminar
+    let confirmacion = confirm("¿Está seguro de que desea eliminar este colaborador?");
+    
+    if (confirmacion) {
+        // Convertir el ID a número para asegurar la comparación correcta
+        let idNumero = parseInt(id);
+
+        // Filtrar el arreglo, dejando fuera el colaborador con ese ID
+        let nuevosColaboradores = [];
+        
+        for (let i = 0; i < colaboradores.length; i++) {
+            if (colaboradores[i].id !== idNumero) {
+                nuevosColaboradores.push(colaboradores[i]);
+            }
+        }        
+        
+        colaboradores = nuevosColaboradores;
+        
+        // Limpiar el campo de búsqueda para mostrar todos los registros
+        document.getElementById("buscar").value = "";
+
+        // Actualizar la tabla
+        renderizarTabla(colaboradores);
+        
+        alert("Colaborador eliminado exitosamente!");
+    }
+}
+            
 // Función reutilizable para filtrar colaboradores
 function filtrarColaboradores(texto) {
     // Convertir a minúsculas para buscar sin importar mayúsculas/minúsculas
@@ -85,12 +114,15 @@ document.getElementById("formulario").addEventListener("submit", function(event)
     } else {
         // No hay errores: crear objeto colaborador y agregarlo
         let nuevoColaborador = {
+            id: siguienteId,
             nombre: nombre,
             apellido: apellido,
             cargo: cargo,
             email: email
         };
 
+        siguienteId++;
+        
         colaboradores.push(nuevoColaborador);
 
         // Renderizar la tabla con todos los colaboradores
@@ -107,14 +139,16 @@ document.getElementById("formulario").addEventListener("submit", function(event)
 });
 
 // Event listener del campo de búsqueda
-document.getElementById("buscar").addEventListener("input", function(event) {
-    let texto = event.target.value;
-    
-    if (texto === "") {
-        // Si está vacío, mostrar todos los colaboradores
-        renderizarTabla(colaboradores);
-    } else {
-        // Si tiene texto, filtrar
-        filtrarColaboradores(texto);
-    }
-});
+let inputBuscar = document.getElementById("buscar");
+
+if (inputBuscar) {
+    inputBuscar.addEventListener("keyup", function(event) {
+        let texto = event.target.value;
+        
+        if (texto === "") {
+            renderizarTabla(colaboradores);
+        } else {
+            filtrarColaboradores(texto);
+        }
+    });
+}
