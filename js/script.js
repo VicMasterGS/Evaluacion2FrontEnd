@@ -1,13 +1,19 @@
-//Arreglo para almacenar colaboradores
+// Arreglo para almacenar colaboradores
 let colaboradores = [];
 
-//Función para renderizar la tabla
-function renderizarTabla() {
-    let tbody = document.querySelector("#tabla-colaboradores tbody");
-    tbody.innerHTML = ""; //Limpiar la tabla
+// Función para renderizar la tabla
+function renderizarTabla(arreglo) {
+    let tbody = document.getElementById("tbody-colaboradores");
+    
+    if (!tbody) {
+        console.error("No se encontró el tbody");
+        return;
+    }
+    
+    tbody.innerHTML = ""; // Limpiar la tabla
 
-    for (let i = 0; i < colaboradores.length; i++) {
-        let colab = colaboradores[i];
+    for (let i = 0; i < arreglo.length; i++) {
+        let colab = arreglo[i];
         
         let fila = "<tr>";
         fila += "<td>" + colab.nombre + "</td>";
@@ -38,16 +44,17 @@ function filtrarColaboradores(texto) {
     renderizarTabla(filtrados);
 }
 
-//Submit del formulario
-document.getElementById("formulario").addEventListener("submit",function(event){ //Detecta y controla cuando el usuario intenta enviar el formulario
-    event.preventDefault(); //Previene el envio por defecto
-    let errores = [] //Cuenta los errores
-    let nombre = document.getElementById("nombre").value; //Lee y guarda el texto escrito
+// Evento submit del formulario
+document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    let errores = [];
+    let nombre = document.getElementById("nombre").value;
     let apellido = document.getElementById("apellido").value;
     let cargo = document.getElementById("cargo").value;
     let email = document.getElementById("email").value;
 
-//Validación de campos vacios
+    // Validación de campos vacíos
     if (nombre === "") {
         errores.push("El campo nombre es obligatorio.");
     } else if (nombre.length < 2) {
@@ -68,17 +75,15 @@ document.getElementById("formulario").addEventListener("submit",function(event){
 
     if (email === "") {
         errores.push("El campo email es obligatorio.");
-    //Validación extra que contenga @ y .
     } else if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
         errores.push("El correo debe contener @ y un punto (ejemplo@correo.com).");
     }
 
-
+    // Si hay errores, mostrarlos
     if (errores.length > 0) {
-        event.preventDefault();
         document.getElementById("errores").innerHTML = errores.join("<br>");
     } else {
-        //No hay errores: crear objeto colaborador y agregarlo
+        // No hay errores: crear objeto colaborador y agregarlo
         let nuevoColaborador = {
             nombre: nombre,
             apellido: apellido,
@@ -88,13 +93,13 @@ document.getElementById("formulario").addEventListener("submit",function(event){
 
         colaboradores.push(nuevoColaborador);
 
-        //Renderizar la tabla con el nuevo colaborador
-        renderizarTabla();
+        // Renderizar la tabla con todos los colaboradores
+        renderizarTabla(colaboradores);
 
-        //Limpiar el formulario
+        // Limpiar el formulario
         document.getElementById("formulario").reset();
         
-        //Limpiar mensajes de error
+        // Limpiar mensajes de error
         document.getElementById("errores").innerHTML = "";
         
         alert("Colaborador registrado exitosamente!");
